@@ -519,7 +519,7 @@ body.edit-mode .colour-input { display: block; }
   <div class="section-label">Details</div>
   <div class="contact-grid" style="margin-bottom:44px;">
     <div class="field">
-      <label>Contact</label>
+      <label>Store</label>
       <input type="text" id="f-name">
     </div>
 
@@ -805,7 +805,6 @@ function submitEOI() {
   body += `Name:   ${name}\n`;
   body += `Email:  ${email}\n`;
   body += `Date:   ${date}\n\n`;
-  body += `${'─'.repeat(48)}\n`;
 
   PRODUCTS.forEach(cat => {
     const picks = cat.items.filter(i => selected.has(i.id));
@@ -821,7 +820,7 @@ function submitEOI() {
     }
   });
 
-  body += `\n${'─'.repeat(48)}\n`;
+
   if (notes) {
     body += `NOTES\n${notes}\n\n`;
   }
