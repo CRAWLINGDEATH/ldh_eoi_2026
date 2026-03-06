@@ -805,7 +805,6 @@ function submitEOI() {
   body += `Name:   ${name}\n`;
   body += `Email:  ${email}\n`;
   body += `Date:   ${date}\n\n`;
-  body += `SAMPLE REQUESTS (${selected.size} of ${totalItems} styles)\n`;
   body += `${'─'.repeat(48)}\n`;
 
   PRODUCTS.forEach(cat => {
@@ -813,8 +812,12 @@ function submitEOI() {
     if (picks.length) {
       body += `\n${cat.category.toUpperCase()}\n`;
       picks.forEach(p => {
-        body += `  ✓  ${p.name}\n`;
-      });
+          const rowEl = document.querySelector(`.product-row[data-id="${p.id}"]`);
+          const input = rowEl ? rowEl.querySelector('.colour-input') : null;
+          const colourText = rowEl ? rowEl.querySelector('.prod-colour') : null;
+          const colour = (input && input.value) ? input.value : (colourText ? colourText.textContent : '');
+          body += `  -  ${p.name} — ${colour}\n`;
+        });
     }
   });
 
@@ -822,7 +825,7 @@ function submitEOI() {
   if (notes) {
     body += `NOTES\n${notes}\n\n`;
   }
-  body += `This is a no-commitment expression of interest only.\nSamples are produced at no cost to the account.\n© 2026 Easytimes Trading Pty Ltd`;
+  body += `© 2026 Easytimes Trading Pty Ltd`;
 
   const subject = encodeURIComponent(`LDH SS26 Sample EOI — ${name}`);
   const bodyEnc = encodeURIComponent(body);
