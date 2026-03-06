@@ -799,12 +799,11 @@ function submitEOI() {
   const date = new Date().toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' });
 
   // Build email body
-  let body = `LIFE & DEATH HARDWARE\nSample Expression of Interest — Summer 2026\n`;
-  body += `${'─'.repeat(48)}\n\n`;
-  body += `CONTACT\n`;
-  body += `Name:   ${name}\n`;
-  body += `Email:  ${email}\n`;
-  body += `Date:   ${date}\n\n`;
+  let body = `LIFE & DEATH HARDWARE\nExpression of Interest — Summer 2026 Concepts\n\n`;
+  body += `STORE\n`;
+  body += `${name}\n`;
+  body += `${email}\n`;
+  body += `${date}\n\n`;
 
   PRODUCTS.forEach(cat => {
     const picks = cat.items.filter(i => selected.has(i.id));
@@ -822,7 +821,7 @@ function submitEOI() {
 
 
   if (notes) {
-    body += `NOTES\n${notes}\n\n`;
+    body += `\nNOTES\n${notes}\n\n`;
   }
   body += `© 2026 Easytimes Trading Pty Ltd`;
 
